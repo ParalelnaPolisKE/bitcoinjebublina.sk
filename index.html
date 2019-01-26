@@ -255,11 +255,7 @@
 
     <header class="header">
       <h1 class="hoax">
-        bitcoin je
-        <span class="hoax__words"
-          ><span class="hoax__word hoax__word--01">bublina</span
-          ><span class="hoax__word hoax__word--02">podvod</span></span
-        >
+        bitcoin je <span class="hoax__words"><span class="hoax__word hoax__word--01">bublina</span><span class="hoax__word hoax__word--02">podvod</span></span>
       </h1>
     </header>
 
@@ -307,11 +303,27 @@
     </footer>
 
     <script>
-      var l = 4850;
-      var path = document.querySelector(".graph__line");
-      var c = path.getBoundingClientRect().width / path.getBBox().width;
-      path.style.strokeDasharray = l * c;
-      path.style.strokeDashoffset = l * c;
+      (function(w) {
+        var l = 4850; // path.getTotalLength()
+        var p = document.querySelector(".graph__line");
+        var ww = w.innerWidth;
+
+        setPathLength(p);
+
+        window.addEventListener("resize", function(e) {
+          if (w.innerWidth !== ww) {
+            ww = w.innerWidth;
+            setPathLength(p);
+          }
+        });
+
+        function setPathLength(path) {
+          var c = path.getBoundingClientRect().width / path.getBBox().width;
+
+          path.style.strokeDasharray = l * c;
+          path.style.strokeDashoffset = l * c;
+        }
+      })(window);
     </script>
   </body>
 </html>
