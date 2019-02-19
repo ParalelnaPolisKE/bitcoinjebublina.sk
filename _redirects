@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+https://bitcoinjebublina.netlify.com/* https://bitcoinjebublina.sk/:splat 301!
